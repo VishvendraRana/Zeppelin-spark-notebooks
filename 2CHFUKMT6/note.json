@@ -1,0 +1,395 @@
+{
+  "paragraphs": [
+    {
+      "text": "val rdd \u003d sc.parallelize(Seq(1,2,3,4,5,6,7,8,9,10))\nprintln(rdd.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 5:39:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1493903888316_2102639670",
+      "id": "20170504-184808_1885938509",
+      "dateCreated": "May 4, 2017 6:48:08 PM",
+      "dateStarted": "May 8, 2017 5:39:09 PM",
+      "dateFinished": "May 8, 2017 5:39:37 PM",
+      "status": "ABORT",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val pairRDD \u003d rdd.map(x \u003d\u003e (x,1))\npairRDD.collectAsMap.foreach(elem \u003d\u003e println(elem._1 + \" --\u003e \" + elem._2))",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 2:36:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "pairRDD: org.apache.spark.rdd.RDD[(Int, Int)] \u003d MapPartitionsRDD[5] at map at \u003cconsole\u003e:29\n8 --\u003e 1\n2 --\u003e 1\n5 --\u003e 1\n4 --\u003e 1\n7 --\u003e 1\n10 --\u003e 1\n1 --\u003e 1\n9 --\u003e 1\n3 --\u003e 1\n6 --\u003e 1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1493904074261_-1625868332",
+      "id": "20170504-185114_87305242",
+      "dateCreated": "May 4, 2017 6:51:14 PM",
+      "dateStarted": "May 8, 2017 12:43:50 PM",
+      "dateFinished": "May 8, 2017 12:43:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh echo -e \"%table name\\tsize\\nSun\\t100\\nmoon\\t10\"",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 2:36:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/sh",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "name\tsize\nSun\t100\nmoon\t10\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494225780940_50638754",
+      "id": "20170508-121300_1800940959",
+      "dateCreated": "May 8, 2017 12:13:00 PM",
+      "dateStarted": "May 8, 2017 1:29:07 PM",
+      "dateFinished": "May 8, 2017 1:29:07 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val jsonDF \u003d spark.sqlContext.read.json(\"/tmp/data_1.json\")\njsonDF.printSchema()\njsonDF.show()\n\njsonDF.createOrReplaceTempView(\"test_table_1\")",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 2:36:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "lineNumbers": false,
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "jsonDF: org.apache.spark.sql.DataFrame \u003d [Age: bigint, Expenses: bigint ... 3 more fields]\nroot\n |-- Age: long (nullable \u003d true)\n |-- Expenses: long (nullable \u003d true)\n |-- ID: long (nullable \u003d true)\n |-- Name: string (nullable \u003d true)\n |-- Salary: long (nullable \u003d true)\n\n+---+--------+---+---------------+------+\n|Age|Expenses| ID|           Name|Salary|\n+---+--------+---+---------------+------+\n| 24|    5000|  1|Vishvendra Rana| 10000|\n| 38|    6000|  2|   Prasad Joshi| 12000|\n| 40|    7000|  3|    Anand Mitra| 14000|\n| 39|    8000|  4|  Sandeep Joshi| 16000|\n| 41|    9000|  5|    Veeral Shah| 18000|\n+---+--------+---+---------------+------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494230284355_1651516281",
+      "id": "20170508-132804_1431445526",
+      "dateCreated": "May 8, 2017 1:28:04 PM",
+      "dateStarted": "May 8, 2017 2:30:50 PM",
+      "dateFinished": "May 8, 2017 2:30:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select * from test_table_1",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 2:37:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "multiBarChart": {
+                  "xLabelStatus": "default"
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "Age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "Expenses",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql"
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "Age\tExpenses\tID\tName\tSalary\n24\t5000\t1\tVishvendra Rana\t10000\n38\t6000\t2\tPrasad Joshi\t12000\n40\t7000\t3\tAnand Mitra\t14000\n39\t8000\t4\tSandeep Joshi\t16000\n41\t9000\t5\tVeeral Shah\t18000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494233849910_1024698429",
+      "id": "20170508-142729_464565982",
+      "dateCreated": "May 8, 2017 2:27:29 PM",
+      "dateStarted": "May 8, 2017 2:31:01 PM",
+      "dateFinished": "May 8, 2017 2:31:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect ID, Name from test_table_1 where Salary \u003e 10000",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 2:42:16 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "lineChart": {
+                  "forceY": false,
+                  "lineWithFocus": false
+                },
+                "multiBarChart": {
+                  "xLabelStatus": "default",
+                  "stacked": false
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Name",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "ID",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql"
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ID\tName\n2\tPrasad Joshi\n3\tAnand Mitra\n4\tSandeep Joshi\n5\tVeeral Shah\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494234061555_-1454948580",
+      "id": "20170508-143101_851627378",
+      "dateCreated": "May 8, 2017 2:31:01 PM",
+      "dateStarted": "May 8, 2017 2:37:52 PM",
+      "dateFinished": "May 8, 2017 2:37:52 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.streaming.OutputMode\n\nimport spark.implicits._\nval lines \u003d spark.readStream.format(\"socket\").option(\"host\", \"10.1.6.180\").option(\"port\", 9999).load()\nval words \u003d lines.as[String].flatMap(_.split(\" \"))\nval wordCount \u003d words.groupBy(\"value\").count()\n\nval query \u003d wordCount.writeStream.outputMode(OutputMode.Complete()).format(\"console\").option(\"path\", \"output/\").start()\nquery.awaitTermination()",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 3:30:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494234472374_1236347550",
+      "id": "20170508-143752_216722725",
+      "dateCreated": "May 8, 2017 2:37:52 PM",
+      "dateStarted": "May 8, 2017 2:48:44 PM",
+      "dateFinished": "May 8, 2017 2:46:49 PM",
+      "status": "ABORT",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types._\nval schema \u003d StructType(\n          StructField(\"ID\", IntegerType, nullable \u003d false) ::\n          StructField(\"Name\", StringType, nullable \u003d false) ::\n          StructField(\"Age\", ShortType, nullable \u003d true) ::\n          StructField(\"Salary\", LongType, nullable \u003d true) ::\n          StructField(\"Expenses\", LongType, nullable \u003d true) :: Nil\n         )\n\nval jsonStreamerDF \u003d spark.readStream.schema(schema).json(\"/tmp/json/*\").repartition(4)\n\nimport org.apache.spark.sql.streaming.OutputMode\n\nval query \u003d jsonStreamerDF.writeStream\n    .outputMode(OutputMode.Append())\n    .format(\"console\")\n    .queryName(\"test_join_query\")\n    .start()\nquery.awaitTermination()",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 3:41:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494237163774_-2072446495",
+      "id": "20170508-152243_1807848637",
+      "dateCreated": "May 8, 2017 3:22:43 PM",
+      "dateStarted": "May 8, 2017 3:40:55 PM",
+      "dateFinished": "May 8, 2017 3:39:22 PM",
+      "status": "ABORT",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494237691657_-1073884658",
+      "id": "20170508-153131_1826648585",
+      "dateCreated": "May 8, 2017 3:31:31 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "test_note1",
+  "id": "2CHFUKMT6",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {}
+}

@@ -1,0 +1,170 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.types._\nval schema \u003d StructType(\n          StructField(\"ID\", IntegerType, nullable \u003d false) ::\n          StructField(\"Name\", StringType, nullable \u003d false) ::\n          StructField(\"Age\", ShortType, nullable \u003d true) ::\n          StructField(\"Salary\", LongType, nullable \u003d true) ::\n          StructField(\"Expenses\", LongType, nullable \u003d true) :: Nil\n         )\n\nval jsonStreamerDF \u003d spark.readStream.schema(schema).json(\"/tmp/json/*\").repartition(4)\n\nimport org.apache.spark.sql.streaming.OutputMode\nval query \u003d jsonStreamerDF.writeStream.outputMode(OutputMode.Append()).format(\"memory\").queryName(\"test_stream_query1\").start()\nquery.awaitTermination(1000)",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 6:07:12 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(ID,IntegerType,false), StructField(Name,StringType,false), StructField(Age,ShortType,true), StructField(Salary,LongType,true), StructField(Expenses,LongType,true))\njsonStreamerDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ID: int, Name: string ... 3 more fields]\nimport org.apache.spark.sql.streaming.OutputMode\nquery: org.apache.spark.sql.streaming.StreamingQuery \u003d Streaming Query test_stream_query1 [id \u003d 900a88d4-664e-4f4d-8a05-2e74aabb73aa, runId \u003d be62d803-76f7-4dea-bc51-e5a96dacb4fe] [state \u003d ACTIVE]\nres1: Boolean \u003d false\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4040/jobs/job?id\u003d2"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494239063508_-1043884634",
+      "id": "20170508-155423_2003506322",
+      "dateCreated": "May 8, 2017 3:54:23 PM",
+      "dateStarted": "May 8, 2017 6:07:12 PM",
+      "dateFinished": "May 8, 2017 6:07:14 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect * from test_stream_query",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 6:08:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 336.6,
+              "optionOpen": true,
+              "setting": {
+                "pieChart": {},
+                "stackedAreaChart": {
+                  "style": "stack"
+                },
+                "multiBarChart": {
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Age",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "Salary",
+                  "index": 3.0,
+                  "aggr": "avg"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql"
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ID\tName\tAge\tSalary\tExpenses\n2\tPrasad Joshi\t38\t12000\t6000\n3\tAnand Mitra\t40\t14000\t7000\n4\tSandeep Joshi\t39\t16000\t8000\n1\tVishvendra Rana\t24\t10000\t5000\n5\tVeeral Shah\t41\t18000\t9000\n12\tVandana Joshi\t28\t1200\t600\n13\tTanisha Mitra\t30\t1400\t700\n14\tMailka Joshi\t29\t1600\t800\n11\tTalina Rana\t24\t1000\t500\n15\tGymGirl Shah\t31\t1800\t900\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494245199447_-1976969189",
+      "id": "20170508-173639_1921492789",
+      "dateCreated": "May 8, 2017 5:36:39 PM",
+      "dateStarted": "May 8, 2017 6:08:31 PM",
+      "dateFinished": "May 8, 2017 6:08:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "user": "anonymous",
+      "dateUpdated": "May 8, 2017 5:54:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql"
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494245760819_132990490",
+      "id": "20170508-174600_366720331",
+      "dateCreated": "May 8, 2017 5:46:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "structured_streaming",
+  "id": "2CJ5V81CX",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

@@ -1,0 +1,406 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.load(\"/home/rana/dev/vish_Rana/spark-ganesha-connector/target/scala-2.11/spark-ganesha-connector-assembly-1.0.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Must be used before SparkInterpreter (%spark) initialized\nHint: put this paragraph before any Spark code and restart Zeppelin/Interpreter"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494312278637_1940520500",
+      "id": "20170509-121438_56960147",
+      "dateCreated": "May 9, 2017 12:14:38 PM",
+      "dateStarted": "May 9, 2017 2:47:17 PM",
+      "dateFinished": "May 9, 2017 2:47:17 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val df \u003d spark.sqlContext.read.json(\"/tmp/json/*\")\n\nimport org.apache.spark.sql.SaveMode\n/* save data into ganesha db */\ndf.write.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").option(\"DocStore\", \"rana\").mode(SaveMode.Overwrite).save()\n\n/* read the above stored data from ganesha db */\nval ganeshaDF \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").option(\"DocStore\", \"rana\").load()\nganeshaDF.printSchema()\nganeshaDF.show()",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "df: org.apache.spark.sql.DataFrame \u003d [Age: bigint, Expenses: bigint ... 3 more fields]\nSaveToGaneshaDB is called...\norg.apache.thrift.transport.TTransportException: java.net.ConnectException: Connection refused (Connection refused)\n  at org.apache.thrift.transport.TSocket.open(TSocket.java:187)\n  at io.dcengines.ganesha.spark.connector.thrift.client.GaneshaClient.\u003cinit\u003e(GaneshaClient.scala:18)\n  at io.dcengines.ganesha.spark.connector.sql.ThriftConnectionPool$$anonfun$apply$1.apply(ThriftConnectionPool.scala:23)\n  at io.dcengines.ganesha.spark.connector.sql.ThriftConnectionPool$$anonfun$apply$1.apply(ThriftConnectionPool.scala:22)\n  at scala.collection.MapLike$class.getOrElse(MapLike.scala:128)\n  at scala.collection.AbstractMap.getOrElse(Map.scala:59)\n  at io.dcengines.ganesha.spark.connector.sql.ThriftConnectionPool$.apply(ThriftConnectionPool.scala:22)\n  at io.dcengines.ganesha.spark.connector.sql.DataFrameFunctions.saveToGaneshaDB(DataFrameFunctions.scala:24)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.DefaultSource.createRelation(DefaultSource.scala:27)\n  at org.apache.spark.sql.execution.datasources.DataSource.write(DataSource.scala:426)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:215)\n  ... 47 elided\nCaused by: java.net.ConnectException: Connection refused (Connection refused)\n  at java.net.PlainSocketImpl.socketConnect(Native Method)\n  at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)\n  at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)\n  at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)\n  at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n  at java.net.Socket.connect(Socket.java:589)\n  at org.apache.thrift.transport.TSocket.open(TSocket.java:182)\n  ... 57 more\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4040/jobs/job?id\u003d6"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494312118642_-1647509825",
+      "id": "20170509-121158_1877798991",
+      "dateCreated": "May 9, 2017 12:11:58 PM",
+      "dateStarted": "May 9, 2017 2:47:17 PM",
+      "dateFinished": "May 9, 2017 2:47:19 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "ganeshaDF.createOrReplaceTempView(\"test_table\")",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1494312543277_-1528007803",
+      "id": "20170509-121903_1587826113",
+      "dateCreated": "May 9, 2017 12:19:03 PM",
+      "dateStarted": "May 9, 2017 2:47:17 PM",
+      "dateFinished": "May 9, 2017 2:47:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect ID, Age, Salary from test_table",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": true,
+              "setting": {
+                "pieChart": {},
+                "stackedAreaChart": {
+                  "style": "stack"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Age",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "Age",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "Salary",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql"
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.thrift.transport.TTransportException\n\tat org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)\n\tat org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:429)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:318)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:219)\n\tat org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:69)\n\tat io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.recv_getCursorHandleFromMaster(GaneshaDB.java:247)\n\tat io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.getCursorHandleFromMaster(GaneshaDB.java:233)\n\tat io.dcengines.ganesha.spark.connector.thrift.client.GaneshaClient.getCursorHandle(GaneshaClient.scala:39)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation.buildScan(GaneshaRelation.scala:72)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$$anonfun$11.apply(DataSourceStrategy.scala:336)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$$anonfun$11.apply(DataSourceStrategy.scala:336)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$$anonfun$pruneFilterProject$1.apply(DataSourceStrategy.scala:384)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$$anonfun$pruneFilterProject$1.apply(DataSourceStrategy.scala:383)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$.pruneFilterProjectRaw(DataSourceStrategy.scala:464)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$.pruneFilterProject(DataSourceStrategy.scala:379)\n\tat org.apache.spark.sql.execution.datasources.DataSourceStrategy$.apply(DataSourceStrategy.scala:332)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$1.apply(QueryPlanner.scala:62)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$1.apply(QueryPlanner.scala:62)\n\tat scala.collection.Iterator$$anon$12.nextCur(Iterator.scala:434)\n\tat scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:440)\n\tat scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:439)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner.plan(QueryPlanner.scala:92)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$2$$anonfun$apply$2.apply(QueryPlanner.scala:77)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$2$$anonfun$apply$2.apply(QueryPlanner.scala:74)\n\tat scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)\n\tat scala.collection.TraversableOnce$$anonfun$foldLeft$1.apply(TraversableOnce.scala:157)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:893)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1336)\n\tat scala.collection.TraversableOnce$class.foldLeft(TraversableOnce.scala:157)\n\tat scala.collection.AbstractIterator.foldLeft(Iterator.scala:1336)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$2.apply(QueryPlanner.scala:74)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner$$anonfun$2.apply(QueryPlanner.scala:66)\n\tat scala.collection.Iterator$$anon$12.nextCur(Iterator.scala:434)\n\tat scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:440)\n\tat org.apache.spark.sql.catalyst.planning.QueryPlanner.plan(QueryPlanner.scala:92)\n\tat org.apache.spark.sql.execution.QueryExecution.sparkPlan$lzycompute(QueryExecution.scala:79)\n\tat org.apache.spark.sql.execution.QueryExecution.sparkPlan(QueryExecution.scala:75)\n\tat org.apache.spark.sql.execution.QueryExecution.executedPlan$lzycompute(QueryExecution.scala:84)\n\tat org.apache.spark.sql.execution.QueryExecution.executedPlan(QueryExecution.scala:84)\n\tat org.apache.spark.sql.Dataset.withTypedCallback(Dataset.scala:2791)\n\tat org.apache.spark.sql.Dataset.head(Dataset.scala:2112)\n\tat org.apache.spark.sql.Dataset.take(Dataset.scala:2327)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.zeppelin.spark.SparkZeppelinContext.showData(SparkZeppelinContext.java:111)\n\tat org.apache.zeppelin.spark.SparkSqlInterpreter.interpret(SparkSqlInterpreter.java:129)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:101)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:500)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:181)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494316133899_-426288180",
+      "id": "20170509-131853_2005146550",
+      "dateCreated": "May 9, 2017 1:18:53 PM",
+      "dateStarted": "May 9, 2017 2:47:20 PM",
+      "dateFinished": "May 9, 2017 2:47:20 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nz.input(\"Enter your name: \", \"Vishvendra Rana\")",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {
+          "Form Name": "test",
+          "Enter your name: ": "Vishvendra Rana"
+        },
+        "forms": {
+          "Enter your name: ": {
+            "name": "Enter your name: ",
+            "displayName": "Enter your name: ",
+            "defaultValue": "Vishvendra Rana",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\nres47: Object \u003d Vishvendra Rana\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494316146649_-1873713542",
+      "id": "20170509-131906_1069030460",
+      "dateCreated": "May 9, 2017 1:19:06 PM",
+      "dateStarted": "May 9, 2017 2:47:20 PM",
+      "dateFinished": "May 9, 2017 2:47:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nz.select(\"City\", Seq((\"option1\", \"Mumbai\"), (\"option2\", \"Nagpur\"), (\"option3\", \"Pune\")))",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "runOnSelectionChange": true
+      },
+      "settings": {
+        "params": {
+          "City": "option1"
+        },
+        "forms": {
+          "City": {
+            "options": [
+              {
+                "value": "option1",
+                "displayName": "Mumbai"
+              },
+              {
+                "value": "option2",
+                "displayName": "Nagpur"
+              },
+              {
+                "value": "option3",
+                "displayName": "Pune"
+              }
+            ],
+            "name": "City",
+            "displayName": "City",
+            "defaultValue": "",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res48: Object \u003d option1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494317604989_53776635",
+      "id": "20170509-134324_1225990612",
+      "dateCreated": "May 9, 2017 1:43:24 PM",
+      "dateStarted": "May 9, 2017 2:47:20 PM",
+      "dateFinished": "May 9, 2017 2:47:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval test \u003d z.select(\"City\", \"option3\", Seq((\"option1\", \"Mumbai\"), (\"option2\", \"Nagpur\"), (\"option3\", \"Pune\")))\nprintln(\"city: \" + z.get(test.toString))",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "runOnSelectionChange": true
+      },
+      "settings": {
+        "params": {
+          "City": "option2"
+        },
+        "forms": {
+          "City": {
+            "options": [
+              {
+                "value": "option1",
+                "displayName": "Mumbai"
+              },
+              {
+                "value": "option2",
+                "displayName": "Nagpur"
+              },
+              {
+                "value": "option3",
+                "displayName": "Pune"
+              }
+            ],
+            "name": "City",
+            "displayName": "City",
+            "defaultValue": "option3",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "test: Object \u003d option2\ncity: null\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494317769676_-821280281",
+      "id": "20170509-134609_1201212686",
+      "dateCreated": "May 9, 2017 1:46:09 PM",
+      "dateStarted": "May 9, 2017 2:47:21 PM",
+      "dateFinished": "May 9, 2017 2:47:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "May 9, 2017 2:47:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494317929735_1888519902",
+      "id": "20170509-134849_1129232003",
+      "dateCreated": "May 9, 2017 1:48:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ganesha/test-note-1",
+  "id": "2CGD64QJC",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
