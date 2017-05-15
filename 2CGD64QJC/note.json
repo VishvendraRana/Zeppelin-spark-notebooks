@@ -64,18 +64,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://10.1.6.180:4040/jobs/job?id\u003d6"
-          ],
-          "interpreterSettingId": "2CFCM7DTC"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1494312118642_-1647509825",
       "id": "20170509-121158_1877798991",
