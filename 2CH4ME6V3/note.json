@@ -1,0 +1,405 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.load(\"/home/rana/tmp/vish_Rana/spark-ganesha-connector/target/scala-2.11/spark-ganesha-connector-assembly-1.0.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 5:18:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@812ec4c\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494846941362_1618825518",
+      "id": "20170515-164541_1653718784",
+      "dateCreated": "May 15, 2017 4:45:41 PM",
+      "dateStarted": "May 16, 2017 5:18:33 PM",
+      "dateFinished": "May 16, 2017 5:18:43 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "/* read the above stored data from ganesha db */\nval ganeshaDF1 \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").option(\"DocStore\", \"kafka_stream\").option(\"NumPartition\", \"2\").load()\nganeshaDF1.printSchema()\nprintln(ganeshaDF1.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 5:21:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\nganeshaDF1: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 13 more fields]\nroot\n |-- @timestamp: string (nullable \u003d true)\n |-- @version: string (nullable \u003d true)\n |-- agent: string (nullable \u003d true)\n |-- auth: string (nullable \u003d true)\n |-- bytes: string (nullable \u003d true)\n |-- clientip: string (nullable \u003d true)\n |-- httpversion: string (nullable \u003d true)\n |-- ident: string (nullable \u003d true)\n |-- message: string (nullable \u003d true)\n |-- referrer: string (nullable \u003d true)\n |-- request: string (nullable \u003d true)\n |-- response: string (nullable \u003d true)\n |-- tags: array (nullable \u003d true)\n |    |-- element: string (containsNull \u003d true)\n |-- timestamp: string (nullable \u003d true)\n |-- verb: string (nullable \u003d true)\n\nGaneshaClient: OpenDocStore method is called...\n3904087\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4040/jobs/job?id\u003d0"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494846963370_585790045",
+      "id": "20170515-164603_1024548975",
+      "dateCreated": "May 15, 2017 4:46:03 PM",
+      "dateStarted": "May 16, 2017 5:21:43 PM",
+      "dateFinished": "May 16, 2017 5:26:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "/* read the above stored data from ganesha db */\nval ganeshaDF2 \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").option(\"DocStore\", \"kafka_stream\").option(\"NumPartition\", \"2\").load()\nganeshaDF2.printSchema()\nprintln(ganeshaDF2.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 10:36:53 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\nganeshaDF2: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 13 more fields]\nroot\n |-- @timestamp: string (nullable \u003d true)\n |-- @version: string (nullable \u003d true)\n |-- agent: string (nullable \u003d true)\n |-- auth: string (nullable \u003d true)\n |-- bytes: string (nullable \u003d true)\n |-- clientip: string (nullable \u003d true)\n |-- httpversion: string (nullable \u003d true)\n |-- ident: string (nullable \u003d true)\n |-- message: string (nullable \u003d true)\n |-- referrer: string (nullable \u003d true)\n |-- request: string (nullable \u003d true)\n |-- response: string (nullable \u003d true)\n |-- tags: array (nullable \u003d true)\n |    |-- element: string (containsNull \u003d true)\n |-- timestamp: string (nullable \u003d true)\n |-- verb: string (nullable \u003d true)\n\nGaneshaClient: OpenDocStore method is called...\n3904087\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494846989338_-1334445743",
+      "id": "20170515-164629_1519611502",
+      "dateCreated": "May 15, 2017 4:46:29 PM",
+      "dateStarted": "May 16, 2017 10:36:53 AM",
+      "dateFinished": "May 16, 2017 10:41:17 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val gJoinedDF \u003d ganeshaDF1.join(ganeshaDF2, \"timestamp\")\nprintln(gJoinedDF.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 10:41:34 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "gJoinedDF: org.apache.spark.sql.DataFrame \u003d [timestamp: string, @timestamp: string ... 27 more fields]\n\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\nGaneshaClient: OpenDocStore method is called...\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 5.0 failed 4 times, most recent failure: Lost task 0.3 in stage 5.0 (TID 14, 10.1.6.180, executor 0): org.apache.thrift.TApplicationException: Internal error processing getMore\n\tat org.apache.thrift.TApplicationException.read(TApplicationException.java:111)\n\tat org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:79)\n\tat io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.recv_getMore(GaneshaDB.java:299)\n\tat io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.getMore(GaneshaDB.java:284)\n\tat io.dcengines.ganesha.spark.connector.thrift.client.GaneshaClient.getMore(GaneshaClient.scala:107)\n\tat io.dcengines.ganesha.spark.connector.rdd.GaneshaIterator.hasNext(GaneshaIterator.scala:17)\n\tat scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n\tat scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:377)\n\tat scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n\tat org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:149)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:99)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:282)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1423)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1422)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1422)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:802)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:802)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:802)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1650)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1958)\n  at org.apache.spark.rdd.RDD$$anonfun$collect$1.apply(RDD.scala:935)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:362)\n  at org.apache.spark.rdd.RDD.collect(RDD.scala:934)\n  at org.apache.spark.sql.execution.SparkPlan.executeCollect(SparkPlan.scala:275)\n  at org.apache.spark.sql.Dataset$$anonfun$org$apache$spark$sql$Dataset$$execute$1$1.apply(Dataset.scala:2371)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:57)\n  at org.apache.spark.sql.Dataset.withNewExecutionId(Dataset.scala:2765)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$execute$1(Dataset.scala:2370)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collect(Dataset.scala:2377)\n  at org.apache.spark.sql.Dataset$$anonfun$count$1.apply(Dataset.scala:2405)\n  at org.apache.spark.sql.Dataset$$anonfun$count$1.apply(Dataset.scala:2404)\n  at org.apache.spark.sql.Dataset.withCallback(Dataset.scala:2778)\n  at org.apache.spark.sql.Dataset.count(Dataset.scala:2404)\n  ... 46 elided\nCaused by: org.apache.thrift.TApplicationException: Internal error processing getMore\n  at org.apache.thrift.TApplicationException.read(TApplicationException.java:111)\n  at org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:79)\n  at io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.recv_getMore(GaneshaDB.java:299)\n  at io.dcengines.ganesha.com.example.ganesha.GaneshaDB$Client.getMore(GaneshaDB.java:284)\n  at io.dcengines.ganesha.spark.connector.thrift.client.GaneshaClient.getMore(GaneshaClient.scala:107)\n  at io.dcengines.ganesha.spark.connector.rdd.GaneshaIterator.hasNext(GaneshaIterator.scala:17)\n  at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n  at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n  at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n  at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:377)\n  at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n  at org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:149)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n  at org.apache.spark.scheduler.Task.run(Task.scala:99)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:282)\n  ... 3 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494847023185_-1007547095",
+      "id": "20170515-164703_1788924448",
+      "dateCreated": "May 15, 2017 4:47:03 PM",
+      "dateStarted": "May 16, 2017 10:41:34 AM",
+      "dateFinished": "May 16, 2017 10:41:38 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types._\nval gSchema \u003d StructType(\n           StructField(\"ID\", IntegerType, nullable \u003d false) ::\n           StructField(\"Name\", StringType, nullable \u003d false) ::\n           StructField(\"Age\", ShortType, nullable \u003d true) ::\n           StructField(\"Salary\", LongType, nullable \u003d true) ::\n           StructField(\"Expenses\", LongType, nullable \u003d true) :: Nil\n           )\n\nval gdf1 \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").schema(gSchema).option(\"DocStore\", \"Json_stream\").option(\"NumPartition\", \"2\").load()\nval gdf2 \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").schema(gSchema).option(\"DocStore\", \"Json_stream\").option(\"NumPartition\", \"2\").load()\nval gdf3 \u003d gdf1.join(gdf2, \"ID\")\ngdf3.show()",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 10:44:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\ngSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(ID,IntegerType,false), StructField(Name,StringType,false), StructField(Age,ShortType,true), StructField(Salary,LongType,true), StructField(Expenses,LongType,true))\nGaneshaClient: OpenDocStore method is called...\ngdf1: org.apache.spark.sql.DataFrame \u003d [ID: int, Name: string ... 3 more fields]\nGaneshaClient: OpenDocStore method is called...\ngdf2: org.apache.spark.sql.DataFrame \u003d [ID: int, Name: string ... 3 more fields]\ngdf3: org.apache.spark.sql.DataFrame \u003d [ID: int, Name: string ... 7 more fields]\nGaneshaClient: OpenDocStore method is called...\nGaneshaClient: OpenDocStore method is called...\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 8.0 failed 4 times, most recent failure: Lost task 0.3 in stage 8.0 (TID 22, 10.1.6.180, executor 0): java.util.NoSuchElementException: key not found: ID\n\tat scala.collection.MapLike$class.default(MapLike.scala:228)\n\tat scala.collection.AbstractMap.default(Map.scala:59)\n\tat scala.collection.MapLike$class.apply(MapLike.scala:141)\n\tat scala.collection.AbstractMap.apply(Map.scala:59)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.dataMapToRow(GaneshaRelation.scala:170)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.createRow(GaneshaRelation.scala:153)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.io$dcengines$ganesha$spark$connector$sql$datasource$ganesha$GaneshaRelation$$convertToRow(GaneshaRelation.scala:146)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$$anonfun$buildScan$1.apply(GaneshaRelation.scala:109)\n\tat io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$$anonfun$buildScan$1.apply(GaneshaRelation.scala:109)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:377)\n\tat scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n\tat org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:126)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:99)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:282)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1423)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1422)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1422)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:802)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:802)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:802)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1650)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:333)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset$$anonfun$org$apache$spark$sql$Dataset$$execute$1$1.apply(Dataset.scala:2371)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:57)\n  at org.apache.spark.sql.Dataset.withNewExecutionId(Dataset.scala:2765)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$execute$1(Dataset.scala:2370)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collect(Dataset.scala:2377)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2113)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.withTypedCallback(Dataset.scala:2795)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2327)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:248)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:636)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:595)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:604)\n  ... 48 elided\nCaused by: java.util.NoSuchElementException: key not found: ID\n  at scala.collection.MapLike$class.default(MapLike.scala:228)\n  at scala.collection.AbstractMap.default(Map.scala:59)\n  at scala.collection.MapLike$class.apply(MapLike.scala:141)\n  at scala.collection.AbstractMap.apply(Map.scala:59)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.dataMapToRow(GaneshaRelation.scala:170)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.createRow(GaneshaRelation.scala:153)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$.io$dcengines$ganesha$spark$connector$sql$datasource$ganesha$GaneshaRelation$$convertToRow(GaneshaRelation.scala:146)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$$anonfun$buildScan$1.apply(GaneshaRelation.scala:109)\n  at io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation$$anonfun$buildScan$1.apply(GaneshaRelation.scala:109)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n  at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:377)\n  at scala.collection.Iterator$$anon$11.hasNext(Iterator.scala:408)\n  at org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:126)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n  at org.apache.spark.scheduler.Task.run(Task.scala:99)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:282)\n  ... 3 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494848172045_526440715",
+      "id": "20170515-170612_1430093118",
+      "dateCreated": "May 15, 2017 5:06:12 PM",
+      "dateStarted": "May 16, 2017 10:44:48 AM",
+      "dateFinished": "May 16, 2017 10:44:53 AM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types._\n\nval schema \u003d StructType(\n          StructField(\"@timestamp\", StringType, true) ::\n          StructField(\"@version\", StringType, true) ::\n          StructField(\"agent\", StringType, true) ::\n          StructField(\"auth\", StringType, true) ::\n          StructField(\"bytes\", StringType, true) ::\n          StructField(\"clientip\", StringType, true) ::\n          StructField(\"httpversion\", StringType, true) ::\n          StructField(\"ident\", StringType, true) ::\n          StructField(\"message\", StringType, true) ::\n          StructField(\"referrer\", StringType, true) ::\n          StructField(\"request\", StringType, true) ::\n          StructField(\"response\", StringType, true) ::\n          StructField(\"tags\", ArrayType(StringType, true), true) ::\n          StructField(\"timestamp\", StringType, true) ::\n          StructField(\"verb\", StringType, true) :: Nil)\nval jsonDF1 \u003d spark.sqlContext.read.schema(schema).json(\"/tmp/data/*\").repartition(2)\n// println(\"Records count: \" + df.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 11:46:18 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(@timestamp,StringType,true), StructField(@version,StringType,true), StructField(agent,StringType,true), StructField(auth,StringType,true), StructField(bytes,StringType,true), StructField(clientip,StringType,true), StructField(httpversion,StringType,true), StructField(ident,StringType,true), StructField(message,StringType,true), StructField(referrer,StringType,true), StructField(request,StringType,true), StructField(response,StringType,true), StructField(tags,ArrayType(StringType,true),true), StructField(timestamp,StringType,true), StructField(verb,StringType,true))\njsonDF1: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [@timestamp: string, @version: string ... 13 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494847629226_-214739432",
+      "id": "20170515-165709_566964434",
+      "dateCreated": "May 15, 2017 4:57:09 PM",
+      "dateStarted": "May 16, 2017 11:46:18 AM",
+      "dateFinished": "May 16, 2017 11:51:09 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val jsonDF2 \u003d spark.sqlContext.read.schema(schema).json(\"/tmp/data/*\").repartition(2)",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 10:48:39 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "jsonDF2: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [@timestamp: string, @version: string ... 13 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494847678122_1140623674",
+      "id": "20170515-165758_1391780028",
+      "dateCreated": "May 15, 2017 4:57:58 PM",
+      "dateStarted": "May 16, 2017 10:48:39 AM",
+      "dateFinished": "May 16, 2017 10:49:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val jsonJoinedDF \u003d jsonDF1.join(jsonDF2, \"timestamp\")\nprintln(jsonJoinedDF.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 10:49:57 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "jsonJoinedDF: org.apache.spark.sql.DataFrame \u003d [timestamp: string, @timestamp: string ... 27 more fields]\n3904087\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494847694689_-841587335",
+      "id": "20170515-165814_805554546",
+      "dateCreated": "May 15, 2017 4:58:14 PM",
+      "dateStarted": "May 16, 2017 10:49:57 AM",
+      "dateFinished": "May 16, 2017 10:53:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val mixedJoinDF \u003d jsonDF1.join(ganeshaDF1, \"timestamp\").explain(true)",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 11:27:48 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\n\u003d\u003d Parsed Logical Plan \u003d\u003d\n\u0027Join UsingJoin(Inner,List(timestamp))\n:- Repartition 2, true\n:  +- Relation[@timestamp#215,@version#216,agent#217,auth#218,bytes#219,clientip#220,httpversion#221,ident#222,message#223,referrer#224,request#225,response#226,tags#227,timestamp#228,verb#229] json\n+- Relation[@timestamp#0,@version#1,agent#2,auth#3,bytes#4,clientip#5,httpversion#6,ident#7,message#8,referrer#9,request#10,response#11,tags#12,timestamp#13,verb#14] io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation@11c470fa\n\n\u003d\u003d Analyzed Logical Plan \u003d\u003d\ntimestamp: string, @timestamp: string, @version: string, agent: string, auth: string, bytes: string, clientip: string, httpversion: string, ident: string, message: string, referrer: string, request: string, response: string, tags: array\u003cstring\u003e, verb: string, @timestamp: string, @version: string, agent: string, auth: string, bytes: string, clientip: string, httpversion: string, ident: string, message: string, ... 5 more fields\nProject [timestamp#228, @timestamp#215, @version#216, agent#217, auth#218, bytes#219, clientip#220, httpversion#221, ident#222, message#223, referrer#224, request#225, response#226, tags#227, verb#229, @timestamp#0, @version#1, agent#2, auth#3, bytes#4, clientip#5, httpversion#6, ident#7, message#8, ... 5 more fields]\n+- Join Inner, (timestamp#228 \u003d timestamp#13)\n   :- Repartition 2, true\n   :  +- Relation[@timestamp#215,@version#216,agent#217,auth#218,bytes#219,clientip#220,httpversion#221,ident#222,message#223,referrer#224,request#225,response#226,tags#227,timestamp#228,verb#229] json\n   +- Relation[@timestamp#0,@version#1,agent#2,auth#3,bytes#4,clientip#5,httpversion#6,ident#7,message#8,referrer#9,request#10,response#11,tags#12,timestamp#13,verb#14] io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation@11c470fa\n\n\u003d\u003d Optimized Logical Plan \u003d\u003d\nProject [timestamp#228, @timestamp#215, @version#216, agent#217, auth#218, bytes#219, clientip#220, httpversion#221, ident#222, message#223, referrer#224, request#225, response#226, tags#227, verb#229, @timestamp#0, @version#1, agent#2, auth#3, bytes#4, clientip#5, httpversion#6, ident#7, message#8, ... 5 more fields]\n+- Join Inner, (timestamp#228 \u003d timestamp#13)\n   :- Repartition 2, true\n   :  +- Filter isnotnull(timestamp#228)\n   :     +- Relation[@timestamp#215,@version#216,agent#217,auth#218,bytes#219,clientip#220,httpversion#221,ident#222,message#223,referrer#224,request#225,response#226,tags#227,timestamp#228,verb#229] json\n   +- Filter isnotnull(timestamp#13)\n      +- Relation[@timestamp#0,@version#1,agent#2,auth#3,bytes#4,clientip#5,httpversion#6,ident#7,message#8,referrer#9,request#10,response#11,tags#12,timestamp#13,verb#14] io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation@11c470fa\n\n\u003d\u003d Physical Plan \u003d\u003d\n*Project [timestamp#228, @timestamp#215, @version#216, agent#217, auth#218, bytes#219, clientip#220, httpversion#221, ident#222, message#223, referrer#224, request#225, response#226, tags#227, verb#229, @timestamp#0, @version#1, agent#2, auth#3, bytes#4, clientip#5, httpversion#6, ident#7, message#8, ... 5 more fields]\n+- *SortMergeJoin [timestamp#228], [timestamp#13], Inner\n   :- *Sort [timestamp#228 ASC NULLS FIRST], false, 0\n   :  +- Exchange hashpartitioning(timestamp#228, 200)\n   :     +- Exchange RoundRobinPartitioning(2)\n   :        +- *Project [@timestamp#215, @version#216, agent#217, auth#218, bytes#219, clientip#220, httpversion#221, ident#222, message#223, referrer#224, request#225, response#226, tags#227, timestamp#228, verb#229]\n   :           +- *Filter isnotnull(timestamp#228)\n   :              +- *FileScan json [@timestamp#215,@version#216,agent#217,auth#218,bytes#219,clientip#220,httpversion#221,ident#222,message#223,referrer#224,request#225,response#226,tags#227,timestamp#228,verb#229] Batched: false, Format: JSON, Location: InMemoryFileIndex[file:/tmp/data/Batch0, file:/tmp/data/Batch1, file:/tmp/data/Batch10, file:/tmp..., PartitionFilters: [], PushedFilters: [IsNotNull(timestamp)], ReadSchema: struct\u003c@timestamp:string,@version:string,agent:string,auth:string,bytes:string,clientip:string,ht...\n   +- *Sort [timestamp#13 ASC NULLS FIRST], false, 0\n      +- Exchange hashpartitioning(timestamp#13, 200)\n         +- *Filter isnotnull(timestamp#13)\n            +- *Scan io.dcengines.ganesha.spark.connector.sql.datasource.ganesha.GaneshaRelation@11c470fa [@timestamp#0,@version#1,agent#2,auth#3,bytes#4,clientip#5,httpversion#6,ident#7,message#8,referrer#9,request#10,response#11,tags#12,timestamp#13,verb#14] PushedFilters: [IsNotNull(timestamp)], ReadSchema: struct\u003c@timestamp:string,@version:string,agent:string,auth:string,bytes:string,clientip:string,ht...\nmixedJoinDF: Unit \u003d ()\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494914235745_1402983488",
+      "id": "20170516-112715_582469873",
+      "dateCreated": "May 16, 2017 11:27:15 AM",
+      "dateStarted": "May 16, 2017 11:27:48 AM",
+      "dateFinished": "May 16, 2017 11:27:49 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val mixedJoinDF \u003d jsonDF1.join(ganeshaDF1, \"timestamp\")\nprintln(mixedJoinDF.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 11:32:03 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "mixedJoinDF: org.apache.spark.sql.DataFrame \u003d [timestamp: string, @timestamp: string ... 27 more fields]\n\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\n3904087\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494911997441_-397995989",
+      "id": "20170516-104957_618883394",
+      "dateCreated": "May 16, 2017 10:49:57 AM",
+      "dateStarted": "May 16, 2017 11:32:03 AM",
+      "dateFinished": "May 16, 2017 11:40:05 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494913369582_860497929",
+      "id": "20170516-111249_31057118",
+      "dateCreated": "May 16, 2017 11:12:49 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ganesha/ganeshadf-join-note",
+  "id": "2CH4ME6V3",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

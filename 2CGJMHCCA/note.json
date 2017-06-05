@@ -1,0 +1,305 @@
+{
+  "paragraphs": [
+    {
+      "text": "import com.datastax.spark.connector._\nval df \u003d spark.read.format(\"org.apache.spark.sql.cassandra\").options(Map( \"table\" -\u003e \"kv\", \"keyspace\" -\u003e \"test\")).load() // This Dataset will use a spark.cassandra.input.size of 128\ndf.printSchema()\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 12:46:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.datastax.spark.connector._\ndf: org.apache.spark.sql.DataFrame \u003d [key: string, value: int]\nroot\n |-- key: string (nullable \u003d true)\n |-- value: integer (nullable \u003d true)\n\n+----+-----+\n| key|value|\n+----+-----+\n|key6|    6|\n|key5|    5|\n|key1|    1|\n|key4|    4|\n|key3|    3|\n|key2|    2|\n+----+-----+\n\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "apps": [],
+      "jobName": "paragraph_1495019897800_-317322115",
+      "id": "20170517-164817_282411077",
+      "dateCreated": "May 17, 2017 4:48:17 PM",
+      "dateStarted": "May 18, 2017 12:46:35 PM",
+      "dateFinished": "May 18, 2017 12:47:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "//write data from local file system to cassandra db\nimport org.apache.spark.sql.types._\nval schema \u003d StructType(\n          StructField(\"@timestamp\", StringType, true) ::\n          StructField(\"@version\", StringType, true) ::\n          StructField(\"agent\", StringType, true) ::\n          StructField(\"auth\", StringType, true) ::\n          StructField(\"bytes\", StringType, true) ::\n          StructField(\"clientip\", StringType, true) ::\n          StructField(\"httpversion\", StringType, true) ::\n          StructField(\"ident\", StringType, true) ::\n          StructField(\"message\", StringType, true) ::\n          StructField(\"referrer\", StringType, true) ::\n          StructField(\"request\", StringType, true) ::\n          StructField(\"response\", StringType, true) ::\n          StructField(\"tags\", ArrayType(StringType, true), true) ::\n          StructField(\"timestamp\", StringType, true) ::\n          StructField(\"verb\", StringType, true) :: Nil)\n\nval jsonDF \u003d spark.sqlContext.read.schema(schema).json(\"/tmp/data/*\")\n\n\nimport org.apache.spark.sql.cassandra._\nimport org.apache.spark.sql.SaveMode\n\njsonDF.filter(\"timestamp is not null\").write.format(\"org.apache.spark.sql.cassandra\").options(Map(\"table\" -\u003e \"fake_web_logs\", \"keyspace\" -\u003e \"test\")).mode(SaveMode.Append).save()",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 2:43:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(@timestamp,StringType,true), StructField(@version,StringType,true), StructField(agent,StringType,true), StructField(auth,StringType,true), StructField(bytes,StringType,true), StructField(clientip,StringType,true), StructField(httpversion,StringType,true), StructField(ident,StringType,true), StructField(message,StringType,true), StructField(referrer,StringType,true), StructField(request,StringType,true), StructField(response,StringType,true), StructField(tags,ArrayType(StringType,true),true), StructField(timestamp,StringType,true), StructField(verb,StringType,true))\njsonDF: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 13 more fields]\nimport org.apache.spark.sql.cassandra._\nimport org.apache.spark.sql.SaveMode\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "apps": [],
+      "jobName": "paragraph_1495020048510_-1817626642",
+      "id": "20170517-165048_866844835",
+      "dateCreated": "May 17, 2017 4:50:48 PM",
+      "dateStarted": "May 18, 2017 2:43:13 PM",
+      "dateFinished": "May 18, 2017 2:53:17 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import com.datastax.spark.connector._\nval df \u003d spark.read.format(\"org.apache.spark.sql.cassandra\").options(Map( \"table\" -\u003e \"fake_web_logs\", \"keyspace\" -\u003e \"test\")).load() // This Dataset will use a spark.cassandra.input.size of 128\n// df.printSchema()\nprintln(\"record count: \" + df.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 5:57:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.datastax.spark.connector._\ndf: org.apache.spark.sql.DataFrame \u003d [timestamp: string, @timestamp: string ... 13 more fields]\nrecord count: 3904087\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4042/jobs/job?id\u003d1"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1495104954345_-1083246535",
+      "id": "20170518-162554_2018649835",
+      "dateCreated": "May 18, 2017 4:25:54 PM",
+      "dateStarted": "May 18, 2017 5:57:15 PM",
+      "dateFinished": "May 18, 2017 5:57:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types._\nval schema \u003d StructType(\n          StructField(\"@timestamp\", StringType, true) ::\n          StructField(\"@version\", StringType, true) ::\n          StructField(\"agent\", StringType, true) ::\n          StructField(\"auth\", StringType, true) ::\n          StructField(\"bytes\", StringType, true) ::\n          StructField(\"clientip\", StringType, true) ::\n          StructField(\"httpversion\", StringType, true) ::\n          StructField(\"ident\", StringType, true) ::\n          StructField(\"message\", StringType, true) ::\n          StructField(\"referrer\", StringType, true) ::\n          StructField(\"request\", StringType, true) ::\n          StructField(\"response\", StringType, true) ::\n          StructField(\"tags\", ArrayType(StringType, true), true) ::\n          StructField(\"timestamp\", StringType, true) ::\n          StructField(\"verb\", StringType, true) :: Nil)\n\nval jsonDF \u003d spark.sqlContext.read.schema(schema).json(\"/tmp/data/*\")",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 5:13:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(@timestamp,StringType,true), StructField(@version,StringType,true), StructField(agent,StringType,true), StructField(auth,StringType,true), StructField(bytes,StringType,true), StructField(clientip,StringType,true), StructField(httpversion,StringType,true), StructField(ident,StringType,true), StructField(message,StringType,true), StructField(referrer,StringType,true), StructField(request,StringType,true), StructField(response,StringType,true), StructField(tags,ArrayType(StringType,true),true), StructField(timestamp,StringType,true), StructField(verb,StringType,true))\njsonDF: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 13 more fields]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "apps": [],
+      "jobName": "paragraph_1495021811256_-896044113",
+      "id": "20170517-172011_1363242246",
+      "dateCreated": "May 17, 2017 5:20:11 PM",
+      "dateStarted": "May 18, 2017 5:13:42 PM",
+      "dateFinished": "May 18, 2017 5:14:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import com.datastax.spark.connector._\nval cassandraDF \u003d spark.read.format(\"org.apache.spark.sql.cassandra\").options(Map( \"table\" -\u003e \"fake_web_logs\", \"keyspace\" -\u003e \"test\")).load()",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 5:15:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.datastax.spark.connector._\ncassandraDF: org.apache.spark.sql.DataFrame \u003d [timestamp: string, @timestamp: string ... 13 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1495107177409_1656520258",
+      "id": "20170518-170257_501301920",
+      "dateCreated": "May 18, 2017 5:02:57 PM",
+      "dateStarted": "May 18, 2017 5:15:03 PM",
+      "dateFinished": "May 18, 2017 5:15:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val joinedDF \u003d jsonDF.join(cassandraDF, \"@timestamp\")\nprintln(\"Records Count: \" + joinedDF.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 5:26:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "joinedDF: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 27 more fields]\nRecords Count: 109664669\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "apps": [],
+      "jobName": "paragraph_1495107903839_1362400767",
+      "id": "20170518-171503_1510145226",
+      "dateCreated": "May 18, 2017 5:15:03 PM",
+      "dateStarted": "May 18, 2017 5:26:17 PM",
+      "dateFinished": "May 18, 2017 5:33:09 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(df.count)",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 5:51:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.SparkException: Job 22 cancelled part of cancelled job group zeppelin-2CGJMHCCA-20170518-172617_1582984342\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1375)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply$mcVI$sp(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobGroupCancelled(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1625)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1958)\n  at org.apache.spark.rdd.RDD$$anonfun$collect$1.apply(RDD.scala:935)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:362)\n  at org.apache.spark.rdd.RDD.collect(RDD.scala:934)\n  at org.apache.spark.sql.execution.SparkPlan.executeCollect(SparkPlan.scala:275)\n  at org.apache.spark.sql.Dataset$$anonfun$org$apache$spark$sql$Dataset$$execute$1$1.apply(Dataset.scala:2371)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:57)\n  at org.apache.spark.sql.Dataset.withNewExecutionId(Dataset.scala:2765)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$execute$1(Dataset.scala:2370)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collect(Dataset.scala:2377)\n  at org.apache.spark.sql.Dataset$$anonfun$count$1.apply(Dataset.scala:2405)\n  at org.apache.spark.sql.Dataset$$anonfun$count$1.apply(Dataset.scala:2404)\n  at org.apache.spark.sql.Dataset.withCallback(Dataset.scala:2778)\n  at org.apache.spark.sql.Dataset.count(Dataset.scala:2404)\n  ... 71 elided\n"
+          }
+        ]
+      },
+      "runtimeInfos": {},
+      "apps": [],
+      "jobName": "paragraph_1495108577543_-802414372",
+      "id": "20170518-172617_1582984342",
+      "dateCreated": "May 18, 2017 5:26:17 PM",
+      "dateStarted": "May 18, 2017 5:51:44 PM",
+      "dateFinished": "May 18, 2017 5:53:15 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1495109231814_838854393",
+      "id": "20170518-173711_822435224",
+      "dateCreated": "May 18, 2017 5:37:11 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "cassandra/dataframe-ops-note",
+  "id": "2CGJMHCCA",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

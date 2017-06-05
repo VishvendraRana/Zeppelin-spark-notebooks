@@ -1,0 +1,171 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\n// z.load(\"/home/rana/Downloads/spark-cassandra-connector_2.11-2.0.1.jar\")\n// z.load(\"/home/rana/Downloads/spark-cassandra-connector_2.11-2.0.0-RC1.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 17, 2017 4:29:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@23b14ed6\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494924986468_1604839422",
+      "id": "20170516-142626_1678400171",
+      "dateCreated": "May 16, 2017 2:26:26 PM",
+      "dateStarted": "May 17, 2017 4:28:39 PM",
+      "dateFinished": "May 17, 2017 4:28:46 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import com.datastax.spark.connector._\nimport org.apache.spark.sql.cassandra._\n\nval collection \u003d sc.parallelize(Seq((\"key5\", 5), (\"key6\", 6)))\ncollection.saveToCassandra(\"test\", \"kv\", SomeColumns(\"key\", \"value\")) ",
+      "user": "anonymous",
+      "dateUpdated": "May 17, 2017 4:26:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 278.0,
+              "optionOpen": false
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.datastax.spark.connector._\nimport org.apache.spark.sql.cassandra._\ncollection: org.apache.spark.rdd.RDD[(String, Int)] \u003d ParallelCollectionRDD[4] at parallelize at \u003cconsole\u003e:40\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494925040317_1329035757",
+      "id": "20170516-142720_20280767",
+      "dateCreated": "May 16, 2017 2:27:20 PM",
+      "dateStarted": "May 17, 2017 4:26:23 PM",
+      "dateFinished": "May 17, 2017 4:26:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import com.datastax.spark.connector._\nimport org.apache.spark.sql.cassandra._\nimport org.apache.spark.{SparkConf, SparkContext}\n\nval rdd \u003d sc.cassandraTable(\"test\", \"kv\")\nprintln(rdd.count)\nprintln(rdd.first)\nprintln(rdd.map(_.getInt(\"value\")).sum) ",
+      "user": "anonymous",
+      "dateUpdated": "May 17, 2017 4:45:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.datastax.spark.connector._\nimport org.apache.spark.sql.cassandra._\nimport org.apache.spark.{SparkConf, SparkContext}\nrdd: com.datastax.spark.connector.rdd.CassandraTableScanRDD[com.datastax.spark.connector.CassandraRow] \u003d CassandraTableScanRDD[0] at RDD at CassandraRDD.scala:19\n6\nCassandraRow{key: key6, value: 6}\n21.0\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4042/jobs/job?id\u003d0",
+            "http://10.1.6.180:4042/jobs/job?id\u003d1",
+            "http://10.1.6.180:4042/jobs/job?id\u003d2"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494927661548_-1402755363",
+      "id": "20170516-151101_369137272",
+      "dateCreated": "May 16, 2017 3:11:01 PM",
+      "dateStarted": "May 17, 2017 4:45:49 PM",
+      "dateFinished": "May 17, 2017 4:46:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494931443262_1940765653",
+      "id": "20170516-161403_578352351",
+      "dateCreated": "May 16, 2017 4:14:03 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "cassandra/connection-test-note",
+  "id": "2CFMF17J3",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

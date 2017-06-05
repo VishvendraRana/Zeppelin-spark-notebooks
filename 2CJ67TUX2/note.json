@@ -1,0 +1,141 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.addRepo(\"hbase-connector\").url(\"http://repo.hortonworks.com/content/groups/public/\")\nz.load(\"com.hortonworks:shc-core:1.1.0-2.1-s_2.11\")",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 1:13:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@31a83f77\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494920473552_-99849373",
+      "id": "20170516-131113_1520344487",
+      "dateCreated": "May 16, 2017 1:11:13 PM",
+      "dateStarted": "May 16, 2017 1:13:25 PM",
+      "dateFinished": "May 16, 2017 1:23:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.execution.datasources.hbase._\nimport org.apache.spark.sql.DataFrame\n\ndef catalog \u003d s\"\"\"{\n        |\"table\":{\"namespace\":\"default\", \"name\":\"table1\"},\n        |\"rowkey\":\"key\",\n        |\"columns\":{\n          |\"col0\":{\"cf\":\"rowkey\", \"col\":\"key\", \"type\":\"string\"},\n          |\"col1\":{\"cf\":\"cf1\", \"col\":\"col1\", \"type\":\"boolean\"},\n          |\"col2\":{\"cf\":\"cf2\", \"col\":\"col2\", \"type\":\"double\"},\n          |\"col3\":{\"cf\":\"cf3\", \"col\":\"col3\", \"type\":\"float\"},\n          |\"col4\":{\"cf\":\"cf4\", \"col\":\"col4\", \"type\":\"int\"},\n          |\"col5\":{\"cf\":\"cf5\", \"col\":\"col5\", \"type\":\"bigint\"},\n          |\"col6\":{\"cf\":\"cf6\", \"col\":\"col6\", \"type\":\"smallint\"},\n          |\"col7\":{\"cf\":\"cf7\", \"col\":\"col7\", \"type\":\"string\"},\n          |\"col8\":{\"cf\":\"cf8\", \"col\":\"col8\", \"type\":\"tinyint\"}\n        |}\n      |}\"\"\".stripMargin\n      \nsc.parallelize(1 to 100).map(i \u003d\u003e (i.toString, i+1, \"Hello\")).toDF.write.options(\n  Map(HBaseTableCatalog.tableCatalog -\u003e catalog, HBaseTableCatalog.newTable -\u003e \"5\"))\n  .format(\"org.apache.spark.sql.execution.datasources.hbase\")\n  .save()",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 1:34:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.execution.datasources.hbase._\nimport org.apache.spark.sql.DataFrame\ncatalog: String\norg.apache.hadoop.hbase.client.RetriesExhaustedException: Failed after attempts\u003d35, exceptions:\nTue May 16 13:35:48 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:36:05 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:36:23 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:36:40 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:36:58 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:37:17 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:37:38 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:38:05 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:38:33 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:39:00 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:39:28 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:40:05 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:40:43 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:41:20 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:41:58 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:42:35 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:43:13 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:43:50 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:44:28 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:45:05 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:45:42 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:46:20 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:46:57 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:47:35 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:48:12 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:48:50 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:49:27 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:50:05 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:50:42 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:51:19 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:51:57 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:52:34 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:53:12 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:53:49 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\nTue May 16 13:54:27 IST 2017, RpcRetryingCaller{globalStartTime\u003d1494921930586, pause\u003d100, retries\u003d35}, org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\n\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:147)\n  at org.apache.hadoop.hbase.client.HBaseAdmin.executeCallable(HBaseAdmin.java:3917)\n  at org.apache.hadoop.hbase.client.HBaseAdmin.getNamespaceDescriptor(HBaseAdmin.java:2700)\n  at org.apache.spark.sql.execution.datasources.hbase.HBaseRelation.createTable(HBaseRelation.scala:123)\n  at org.apache.spark.sql.execution.datasources.hbase.DefaultSource.createRelation(HBaseRelation.scala:60)\n  at org.apache.spark.sql.execution.datasources.DataSource.write(DataSource.scala:426)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:215)\n  ... 48 elided\nCaused by: org.apache.hadoop.hbase.MasterNotRunningException: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation$StubMaker.makeStub(ConnectionManager.java:1533)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation$MasterServiceStubMaker.makeStub(ConnectionManager.java:1553)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation.getKeepAliveMasterService(ConnectionManager.java:1704)\n  at org.apache.hadoop.hbase.client.MasterCallable.prepare(MasterCallable.java:38)\n  at org.apache.hadoop.hbase.client.RpcRetryingCaller.callWithRetries(RpcRetryingCaller.java:124)\n  ... 54 more\nCaused by: org.apache.hadoop.hbase.MasterNotRunningException: Can\u0027t get connection to ZooKeeper: KeeperErrorCode \u003d ConnectionLoss for /hbase\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation.checkIfBaseNodeAvailable(ConnectionManager.java:906)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation.access$400(ConnectionManager.java:545)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation$StubMaker.makeStubNoRetries(ConnectionManager.java:1483)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation$StubMaker.makeStub(ConnectionManager.java:1524)\n  ... 58 more\nCaused by: org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode \u003d ConnectionLoss for /hbase\n  at org.apache.zookeeper.KeeperException.create(KeeperException.java:99)\n  at org.apache.zookeeper.KeeperException.create(KeeperException.java:51)\n  at org.apache.zookeeper.ZooKeeper.exists(ZooKeeper.java:1041)\n  at org.apache.hadoop.hbase.zookeeper.RecoverableZooKeeper.exists(RecoverableZooKeeper.java:221)\n  at org.apache.hadoop.hbase.zookeeper.ZKUtil.checkExists(ZKUtil.java:541)\n  at org.apache.hadoop.hbase.client.ConnectionManager$HConnectionImplementation.checkIfBaseNodeAvailable(ConnectionManager.java:895)\n  ... 61 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494921273640_195005081",
+      "id": "20170516-132433_1864452216",
+      "dateCreated": "May 16, 2017 1:24:33 PM",
+      "dateStarted": "May 16, 2017 1:34:55 PM",
+      "dateFinished": "May 16, 2017 1:54:27 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import it.nerdammer.spark.hbase._\n// sc.hadoopConfiguration.set(\"spark.hbase.host\", \"10.1.7.100\")\n\n// spark.conf.set(\"spark.hbase.host\", \"10.1.7.100\")\n\n// val rdd \u003d sc.parallelize(1 to 100).map(i \u003d\u003e (i.toString, i+1, \"Hello\"))\n/*rdd.toHBaseTable(\"mytable\")\n    .toColumns(\"column1\", \"column2\")\n    .inColumnFamily(\"mycf\")\n    .save()*/",
+      "user": "anonymous",
+      "dateUpdated": "May 16, 2017 1:02:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": "Exception in thread \"main\" java.lang.NoSuchMethodError: scala.Predef$.$conforms()Lscala/Predef$$less$colon$less;\n\tat org.apache.spark.util.Utils$.getDefaultPropertiesFile(Utils.scala:2086)\n\tat org.apache.spark.deploy.SparkSubmitArguments$$anonfun$mergeDefaultSparkProperties$1.apply(SparkSubmitArguments.scala:118)\n\tat org.apache.spark.deploy.SparkSubmitArguments$$anonfun$mergeDefaultSparkProperties$1.apply(SparkSubmitArguments.scala:118)\n\tat scala.Option.getOrElse(Option.scala:120)\n\tat org.apache.spark.deploy.SparkSubmitArguments.mergeDefaultSparkProperties(SparkSubmitArguments.scala:118)\n\tat org.apache.spark.deploy.SparkSubmitArguments.\u003cinit\u003e(SparkSubmitArguments.scala:104)\n\tat org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:119)\n\tat org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)\n",
+      "apps": [],
+      "jobName": "paragraph_1494919403448_-1871914151",
+      "id": "20170516-125323_478727643",
+      "dateCreated": "May 16, 2017 12:53:23 PM",
+      "dateStarted": "May 16, 2017 1:02:56 PM",
+      "dateFinished": "May 16, 2017 1:02:57 PM",
+      "status": "ERROR",
+      "errorMessage": "org.apache.zeppelin.interpreter.InterpreterException: Exception in thread \"main\" java.lang.NoSuchMethodError: scala.Predef$.$conforms()Lscala/Predef$$less$colon$less;\n\tat org.apache.spark.util.Utils$.getDefaultPropertiesFile(Utils.scala:2086)\n\tat org.apache.spark.deploy.SparkSubmitArguments$$anonfun$mergeDefaultSparkProperties$1.apply(SparkSubmitArguments.scala:118)\n\tat org.apache.spark.deploy.SparkSubmitArguments$$anonfun$mergeDefaultSparkProperties$1.apply(SparkSubmitArguments.scala:118)\n\tat scala.Option.getOrElse(Option.scala:120)\n\tat org.apache.spark.deploy.SparkSubmitArguments.mergeDefaultSparkProperties(SparkSubmitArguments.scala:118)\n\tat org.apache.spark.deploy.SparkSubmitArguments.\u003cinit\u003e(SparkSubmitArguments.scala:104)\n\tat org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:119)\n\tat org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)\n\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterManagedProcess.start(RemoteInterpreterManagedProcess.java:149)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.reference(RemoteInterpreterProcess.java:73)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.open(RemoteInterpreter.java:266)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.getFormType(RemoteInterpreter.java:431)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.getFormType(LazyOpenInterpreter.java:115)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:392)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:181)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494919567746_2014078744",
+      "id": "20170516-125607_1193538124",
+      "dateCreated": "May 16, 2017 12:56:07 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "hbase/connection-test-note",
+  "id": "2CJ67TUX2",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

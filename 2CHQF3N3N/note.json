@@ -1,0 +1,125 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.load(\"/tmp/vish_Rana/spark-ganesha-connector/target/scala-2.11/spark-ganesha-connector-assembly-1.0.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 10:43:27 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@6ff4987c\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494824564586_-123015502",
+      "id": "20170515-103244_1966913293",
+      "dateCreated": "May 15, 2017 10:32:44 AM",
+      "dateStarted": "May 15, 2017 10:43:27 AM",
+      "dateFinished": "May 15, 2017 10:43:36 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import io.dcengines.ganesha.spark.connector._\n\nval rdd \u003d sc.ganeshaRDD[String](\"kafka_stream\", Map(\"NumPartition\" -\u003e \"2\"))\nprintln(\"Count: \" + rdd.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 11:07:13 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import io.dcengines.ganesha.spark.connector._\n\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\nrdd: io.dcengines.ganesha.spark.connector.rdd.GaneshaRDD[String] \u003d GaneshaRDD[3] at RDD at GaneshaAbstractRDD.scala:16\nCount: 3863943\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4040/jobs/job?id\u003d2"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494824612294_1984916453",
+      "id": "20170515-103332_2053256693",
+      "dateCreated": "May 15, 2017 10:33:32 AM",
+      "dateStarted": "May 15, 2017 11:07:13 AM",
+      "dateFinished": "May 15, 2017 11:10:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494825207215_1333213636",
+      "id": "20170515-104327_1988233723",
+      "dateCreated": "May 15, 2017 10:43:27 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ganesha/ganesha-rdd-note",
+  "id": "2CHQF3N3N",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

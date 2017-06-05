@@ -1,0 +1,239 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.load(\"/home/rana/tmp/vish_Rana/spark-ganesha-connector/target/scala-2.11/spark-ganesha-connector-assembly-1.0.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 6:13:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@8e9412e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494829455929_2066028354",
+      "id": "20170515-115415_155356608",
+      "dateCreated": "May 15, 2017 11:54:15 AM",
+      "dateStarted": "May 18, 2017 6:13:33 PM",
+      "dateFinished": "May 18, 2017 6:13:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "/* read the above stored data from ganesha db */\nval ganeshaDF \u003d spark.sqlContext.read.format(\"io.dcengines.ganesha.spark.connector.sql.datasource.ganesha\").option(\"DocStore\", \"kafka_stream\").option(\"NumPartition\", \"2\").load()\n// ganeshaDF.printSchema()\nprintln(ganeshaDF.count())",
+      "user": "anonymous",
+      "dateUpdated": "May 18, 2017 6:15:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "GaneshaClient: OpenDocStore method is called...\nganeshaDF: org.apache.spark.sql.DataFrame \u003d [@timestamp: string, @version: string ... 13 more fields]\nGaneshaClient: OpenDocStore method is called...\n5\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4042/jobs/job?id\u003d2"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494829476303_-50059948",
+      "id": "20170515-115436_1461791105",
+      "dateCreated": "May 15, 2017 11:54:36 AM",
+      "dateStarted": "May 18, 2017 6:15:08 PM",
+      "dateFinished": "May 18, 2017 6:15:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "ganeshaDF.createOrReplaceTempView(\"ganesha_table\")\nspark.sql(\"select * from ganesha_table\").count()",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 12:53:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: OpenDocStore method is called...\nres4: Long \u003d 3863943\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494832227727_-2028721206",
+      "id": "20170515-124027_2083379190",
+      "dateCreated": "May 15, 2017 12:40:27 PM",
+      "dateStarted": "May 15, 2017 12:53:18 PM",
+      "dateFinished": "May 15, 2017 1:02:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types._\n\nval schema \u003d StructType(\n          StructField(\"@timestamp\", StringType, true) ::\n          StructField(\"@version\", StringType, true) ::\n          StructField(\"agent\", StringType, true) ::\n          StructField(\"auth\", StringType, true) ::\n          StructField(\"bytes\", StringType, true) ::\n          StructField(\"clientip\", StringType, true) ::\n          StructField(\"httpversion\", StringType, true) ::\n          StructField(\"ident\", StringType, true) ::\n          StructField(\"message\", StringType, true) ::\n          StructField(\"referrer\", StringType, true) ::\n          StructField(\"request\", StringType, true) ::\n          StructField(\"response\", StringType, true) ::\n          StructField(\"tags\", ArrayType(StringType, true), true) ::\n          StructField(\"timestamp\", StringType, true) ::\n          StructField(\"verb\", StringType, true) :: Nil)\nval df \u003d spark.sqlContext.read.schema(schema).json(\"/tmp/data/*\").repartition(2)\nprintln(\"Records count: \" + df.count())\n/*\n first time count: 3904332\n*/",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 4:19:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(@timestamp,StringType,true), StructField(@version,StringType,true), StructField(agent,StringType,true), StructField(auth,StringType,true), StructField(bytes,StringType,true), StructField(clientip,StringType,true), StructField(httpversion,StringType,true), StructField(ident,StringType,true), StructField(message,StringType,true), StructField(referrer,StringType,true), StructField(request,StringType,true), StructField(response,StringType,true), StructField(tags,ArrayType(StringType,true),true), StructField(timestamp,StringType,true), StructField(verb,StringType,true))\ndf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [@timestamp: string, @version: string ... 13 more fields]\nRecords count: 3904332\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494829573192_1673351324",
+      "id": "20170515-115613_1946079809",
+      "dateCreated": "May 15, 2017 11:56:13 AM",
+      "dateStarted": "May 15, 2017 4:19:35 PM",
+      "dateFinished": "May 15, 2017 4:24:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.createOrReplaceTempView(\"json_table\")\nspark.sql(\"select * from json_table\").count()",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 12:53:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res7: Long \u003d 3904332\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494830545741_-1018359082",
+      "id": "20170515-121225_679719648",
+      "dateCreated": "May 15, 2017 12:12:25 PM",
+      "dateStarted": "May 15, 2017 1:02:01 PM",
+      "dateFinished": "May 15, 2017 1:14:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 12:53:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494832755283_-273161236",
+      "id": "20170515-124915_290640596",
+      "dateCreated": "May 15, 2017 12:49:15 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ganesha/ganeshaRDD-df-note",
+  "id": "2CGEVZR2D",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

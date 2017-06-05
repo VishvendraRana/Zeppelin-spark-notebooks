@@ -1,0 +1,134 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.dep\nz.load(\"/home/rana/dev/vish_Rana/spark-ganesha-connector/target/scala-2.11/spark-ganesha-connector-assembly-1.0.jar\")",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 2:53:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@20100722\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1494838255656_1948547176",
+      "id": "20170515-142055_999267818",
+      "dateCreated": "May 15, 2017 2:20:55 PM",
+      "dateStarted": "May 15, 2017 2:53:06 PM",
+      "dateFinished": "May 15, 2017 2:53:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "\nval kafkaStreamer \u003d spark.readStream.format(\"kafka\")\n    .option(\"kafka.bootstrap.servers\", \"10.1.6.180:9092\")\n    .option(\"subscribe\", \"test\")\n    .load()\n    \nimport spark.implicits._\nval serDf \u003d kafkaStreamer.selectExpr(\"CAST(key AS STRING)\", \"CAST(value AS STRING)\")\n    .as[(String, String)]\n\nval valueDF \u003d serDf.select(\"value\")\n\nval query \u003d valueDF.writeStream\n    .option(\"DocStore\", \"kafka_stream_1\")\n    .option(\"checkpointLocation\", \"CheckPoint\")\n    .format(\"io.dcengines.ganesha.spark.connector.sql.datasource.kafka\")\n    .queryName(\"kafka-query\")\n    .start()\n\nquery.awaitTermination(30*60*1000)",
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 2:53:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "kafkaStreamer: org.apache.spark.sql.DataFrame \u003d [key: binary, value: binary ... 5 more fields]\nimport spark.implicits._\nserDf: org.apache.spark.sql.Dataset[(String, String)] \u003d [key: string, value: string]\nvalueDF: org.apache.spark.sql.DataFrame \u003d [value: string]\nquery: org.apache.spark.sql.streaming.StreamingQuery \u003d Streaming Query kafka-query [id \u003d e377fbdd-17c7-4bbb-8868-ef4a08f70c1f, runId \u003d cb895972-f230-40fa-b586-8a92c2b160f1] [state \u003d ACTIVE]\n\n\n\nGaneshaClient: thrift Connection opened!!\n\n\nGaneshaClient: createDocStore method is called...\nGaneshaClient: setOptions method is called...\norg.apache.spark.sql.streaming.StreamingQueryException: Query kafka-query [id \u003d e377fbdd-17c7-4bbb-8868-ef4a08f70c1f, runId \u003d cb895972-f230-40fa-b586-8a92c2b160f1] terminated with exception: Job 0 cancelled part of cancelled job group zeppelin-2CJJG474N-20170515-142116_488485529\n  at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches(StreamExecution.scala:284)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:177)\nCaused by: org.apache.spark.SparkException: Job 0 cancelled part of cancelled job group zeppelin-2CJJG474N-20170515-142116_488485529\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1375)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply$mcVI$sp(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobGroupCancelled(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1625)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1958)\n  at org.apache.spark.rdd.RDD$$anonfun$foreachPartition$1.apply(RDD.scala:925)\n  at org.apache.spark.rdd.RDD$$anonfun$foreachPartition$1.apply(RDD.scala:923)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:362)\n  at org.apache.spark.rdd.RDD.foreachPartition(RDD.scala:923)\n  at io.dcengines.ganesha.spark.connector.sql.sink.GaneshaKafkaSink.addBatch(GaneshaKafkaSink.scala:47)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatch$1.apply$mcV$sp(StreamExecution.scala:503)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatch$1.apply(StreamExecution.scala:503)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatch$1.apply(StreamExecution.scala:503)\n  at org.apache.spark.sql.execution.streaming.ProgressReporter$class.reportTimeTaken(ProgressReporter.scala:262)\n  at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:46)\n  at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runBatch(StreamExecution.scala:502)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches$1$$anonfun$1.apply$mcV$sp(StreamExecution.scala:255)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches$1$$anonfun$1.apply(StreamExecution.scala:244)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches$1$$anonfun$1.apply(StreamExecution.scala:244)\n  at org.apache.spark.sql.execution.streaming.ProgressReporter$class.reportTimeTaken(ProgressReporter.scala:262)\n  at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:46)\n  at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches$1.apply$mcZ$sp(StreamExecution.scala:244)\n  at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:43)\n  at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runBatches(StreamExecution.scala:239)\n  ... 1 more\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://10.1.6.180:4040/jobs/job?id\u003d0"
+          ],
+          "interpreterSettingId": "2CFCM7DTC"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1494838276790_1376440886",
+      "id": "20170515-142116_488485529",
+      "dateCreated": "May 15, 2017 2:21:16 PM",
+      "dateStarted": "May 15, 2017 2:53:32 PM",
+      "dateFinished": "May 15, 2017 2:56:12 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "dateUpdated": "May 15, 2017 2:52:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1494838520422_-135088113",
+      "id": "20170515-142520_254485342",
+      "dateCreated": "May 15, 2017 2:25:20 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ganesha/ganesha-kafka-streaming-note",
+  "id": "2CJJG474N",
+  "angularObjects": {
+    "2CG7SXBWU:shared_process": [],
+    "2CHVFM3P1:shared_process": [],
+    "2CFGSMB9E:shared_process": [],
+    "2CFTE3EWV:shared_process": [],
+    "2CFTZK487:shared_process": [],
+    "2CFB4MYGN:shared_process": [],
+    "2CHZCYQVU:shared_process": [],
+    "2CHJX3Y44:shared_process": [],
+    "2CEE2W9NY:shared_process": [],
+    "2CHEB495E:shared_process": [],
+    "2CH6TD9TS:shared_process": [],
+    "2CFCM7DTC:shared_process": [],
+    "2CJ18EC15:shared_process": [],
+    "2CEAVGGFG:shared_process": [],
+    "2CG214JJT:shared_process": [],
+    "2CFM5XBDS:shared_process": [],
+    "2CJ5MQ85P:shared_process": [],
+    "2CGR1PN6P:shared_process": [],
+    "2CGN4YX6B:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
